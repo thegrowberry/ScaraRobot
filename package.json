@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/thegrowberry/ScaraRobot#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "pug": "^3.0.0"
   }
 }

@@ -16,14 +16,19 @@
       <div class="main">
           <h3>Vezérlő kód feltöltése:</h3>
         <div class="upload">
-          <form action="/action_page.php">
-            <input type="file" id="myFile" name="filename" style="font-size:20px">
-            <input type="submit" style="font-size:20px">
+          <form method="POST" action="/" enctype="multipart/form-data">
+            <input type="file" id="myFile" name="file" style="font-size:20px">
+            <input type="submit" value="upload" style="font-size:20px">
           </form>
         </div>
         <div class="btn">
           <button type="button" class="btnStart">Mérés indítás</button>
         </div>
       </div>
+      <script>
+        var msg = "<%= msg %>";
+        console.log(msg);
+    </script>
+      
 </body>
 </html>
