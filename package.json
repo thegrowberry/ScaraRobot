@@ -1,0 +1,23 @@
+{
+  "name": "ScaraRobot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Measure.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thegrowberry/ScaraRobot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thegrowberry/ScaraRobot/issues"
+  },
+  "homepage": "https://github.com/thegrowberry/ScaraRobot#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
