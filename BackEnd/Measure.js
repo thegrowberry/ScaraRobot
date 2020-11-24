@@ -6,7 +6,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 async function start(){
-    var array = fs.readFileSync('gcode.txt').toString().split("\r\n");
+    var array = fs.readFileSync('BackEnd/gcode.txt').toString().split("\r\n");
     for (let i = 0; i < array.length; i++) {
         if(array[i][0] == 'G')
         {
