@@ -1,29 +1,41 @@
-const { SSL_OP_EPHEMERAL_RSA } = require('constants');
-var serialCom = require('./SerialCom');
-var fs = require('fs');
+const { SSL_OP_EPHEMERAL_RSA } = require("constants");
+const createSerialCom = require("./SerialCom");
+const fs = require("fs");
 
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-async function start(){
-    var array = fs.readFileSync('BackEnd/gcode.txt').toString().split("\r\n");
-    for (let i = 0; i < array.length; i++) {
-        if(array[i][0] == 'G')
-        {
-            console.log(array[i]);
-            serialCom.SendMessage(array[i]);
-            await sleep(3000);
-        }
-        else if(array[i] == 'Measure')
-        {
-            console.log('Measure started!');
-        }
-        else
-        {
-            console.log('Rainbow setting changed!');
-        }
-    }
-    console.log('Measure function finished!');
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-module.exports.start = start;
+module.exports.start = async function start() {
+  const serialHandler = createSerialCom();
+
+  const array = fs
+    .readFileSync("BackEnd/gcode.txt")
+    .toString()
+    .replace(/[\r]+/g, "") // linux/windows line break diff
+    .split("\n");
+
+  for (const item of array) {
+    if (item[0] === ";") continue;
+
+    const operation = item.split(" ")[0];
+
+    switch (operation) {
+      case "G0": {
+        console.log(item);
+        serialHandler.SendMessage(item);
+        await sleep(3000);
+        break;
+      }
+      case "M": {
+        console.log("Measure started!");
+        break;
+      }
+      default: {
+        console.log("Rainbow setting changed!");
+        break;
+      }
+    }
+  }
+  console.log("Measure function finished!");
+};

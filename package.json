@@ -4,6 +4,7 @@
   "description": "",
   "main": "Measure.js",
   "scripts": {
+    "dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,6 +21,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "express-fileupload": "^1.2.0",
-    "pug": "^3.0.0"
+    "pug": "^3.0.0",
+    "serialport": "^9.0.2"
   }
 }

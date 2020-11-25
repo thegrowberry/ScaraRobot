@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Robotvezérlő</title>
+  </head>
+  <body>
+    <div class="head">
+      <img
+        src="https://static.wixstatic.com/media/04a101_2ee9653f6c1f462ebdd57ecda71b0ed4~mv2.jpg/v1/fit/w_2500,h_1330,al_c/04a101_2ee9653f6c1f462ebdd57ecda71b0ed4~mv2.jpg"
+        alt="logo"
+        class="logo"
+      />
+      <h1 class="head_title">Spectro Radiometer Robotvezérlő</h1>
+      <img
+        src="https://static.wixstatic.com/media/04a101_2ee9653f6c1f462ebdd57ecda71b0ed4~mv2.jpg/v1/fit/w_2500,h_1330,al_c/04a101_2ee9653f6c1f462ebdd57ecda71b0ed4~mv2.jpg"
+        alt="logo"
+        class="logo"
+      />
+    </div>
+    <div class="main">
+      <h3>Vezérlő kód feltöltése:</h3>
+      <div class="upload">
+        <form method="POST" action="/upload" enctype="multipart/form-data">
+          <input type="file" id="myFile" name="file" style="font-size: 20px" />
+          <input type="submit" value="upload" style="font-size: 20px" />
+        </form>
+      </div>
+      <div class="btn">
+        <button type="button" class="btnStart">Mérés indítás</button>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//malsup.github.com/jquery.form.js"></script>
+    <script>
+      $(document).ready(function () {
+        const form = $("form");
+        form.submit(function (event) {
+          form.ajaxSubmit({
+            success: (...args) => {
+              form.resetForm();
+              console.log(args);
+              alert("Got it, thanks!");
+            },
+            error: (error) => {
+              alert("Something is wrong: " + error.responseText);
+            },
+          });
+          return false;
+        });
+      });
+    </script>
+  </footer>
+</html>

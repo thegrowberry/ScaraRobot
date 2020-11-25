@@ -1,7 +1,7 @@
 {
   "signal": "SIGINT",
-  "watch": ["src/**/*.js?(x)"],
+  "watch": ["./**/*.js?(x)"],
   "ext": "ts,mjs,js,json,graphql",
-  "exec": "node --inspect 9678 ./dist/index.js",
+  "exec": "node --inspect=9678 ./app.js",
   "legacyWatch": true
 }

@@ -1,33 +1,26 @@
-var measure = require('./BackEnd/Measure');
+var measure = require("./BackEnd/Measure");
 //var express = require('./Backend/ExpressHandler')
-const express = require('express');
-const upload = require('express-fileupload');
+const express = require("express");
+const upload = require("express-fileupload");
 
 const app = express();
 
-app.use(express.static(__dirname)); //Nem tudom ez mit csinál de király
-app.use(upload());
+app.use(express.static("public")); //Nem tudom ez mit csinál de király
+app.use(upload({ debug: true }));
 
-
-app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/FrontEnd/index.html')
-});
-
-app.post('/', (req,res) =>{
-    if(req.files)
-    {
-        var file = req.files.file;
-        file.mv('./BackEnd/gcode.txt',function (err){
-            if(err){
-                res.send(err)
-            }
-        })
-    }
+app.post("/upload", (req, res) => {
+  if (req.files) {
+    var file = req.files.file;
+    return file.mv("./uploads/gcode.txt", (err) =>
+      err ? res.status(500).json(err) : res.sendStatus(200)
+    );
+  }
+  return res.status(400).send("NO FILE");
 });
 
 console.log(__dirname);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
+app.listen(PORT, () => console.log(`Listening at: http://localhost:${PORT}`));
 
 //measure.start();
